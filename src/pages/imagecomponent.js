@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import Image from "next/image";
 import { getUnsplashImages, searchImages } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
@@ -8,7 +8,7 @@ export async function getServerSideProps() {
   return { props: { data } };
 }
 
-export default function Home({ data }) {
+export default function ImageComponent({ data }) {
   const [images, setImages] = useState(data);
   const [searchQuery, setSearchQuery] = useState("");
   const [draggedImage, setDraggedImage] = useState(null);
@@ -44,28 +44,7 @@ export default function Home({ data }) {
   };
 
   return (
-    <>
-      <header className="p-5">
-        <div className="flex justify-between items-center">
-          <h1>Image Gallery</h1>
-        </div>
-
-        <div>
-          {" "}
-          <form className="border-2 border-gray-800 rounded-md px-3 py-1 w-full max-w-[525px] mx-auto flex justify-between items-center">
-            {" "}
-            <input
-              type="text"
-              name="query"
-              className="bg-transparent placeholder:text-xs outline-none w-full"
-              placeholder="Search"
-              id="search"
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </form>
-        </div>
-      </header>
-
+    <div>
       <main>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 p-5">
           {images.map((image) => (
@@ -86,6 +65,6 @@ export default function Home({ data }) {
           ))}
         </div>
       </main>
-    </>
+    </div>
   );
 }

@@ -1,6 +1,7 @@
-// import Image from "next/image";
+import Image from "next/image";
 import { getUnsplashImages, searchImages } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import ImageComponent from "./imagecomponent";
 
 export async function getServerSideProps() {
   const data = await getUnsplashImages();
@@ -42,9 +43,8 @@ export default function Home({ data }) {
     setImages(newImages);
     setDraggedImage(null);
   };
-
   return (
-    <>
+    <div>
       <header className="p-5">
         <div className="flex justify-between items-center">
           <h1>Image Gallery</h1>
@@ -62,6 +62,9 @@ export default function Home({ data }) {
               id="search"
               onChange={(e) => setSearchQuery(e.target.value)}
             />
+            {/* <label htmlFor="search" className="text-white">
+              <SearchIcon />
+            </label> */}
           </form>
         </div>
       </header>
@@ -86,6 +89,6 @@ export default function Home({ data }) {
           ))}
         </div>
       </main>
-    </>
+    </div>
   );
 }
